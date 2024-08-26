@@ -80,6 +80,81 @@ fetch('https://aula-http-canal-default-rtdb.firebaseio.com/textos/{ID_DO_DADO}.j
 .then(data => console.log(data));
 ```
 
+# Envio de Dados com `fetch` no JavaScript
+
+O envio de dados em uma requisição `fetch` no JavaScript pode ser feito de diferentes maneiras, dependendo do tipo de dados que você precisa enviar. Os dois métodos mais comuns são utilizando JSON e FormData.
+
+## 1. Enviando Dados como JSON
+
+JSON (JavaScript Object Notation) é o formato mais comum para enviar dados estruturados em uma requisição HTTP, especialmente para APIs RESTful.
+
+### Passos:
+
+1. **Crie o objeto JavaScript**: Primeiro, você cria um objeto JavaScript com os dados que deseja enviar.
+2. **Converta para JSON**: Utilize a função `JSON.stringify()` para converter o objeto em uma string JSON.
+3. **Configure a requisição fetch**: Na chamada `fetch`, defina o método como `POST` (ou outro método HTTP como `PUT`, `PATCH`, etc.), adicione os cabeçalhos adequados, como `Content-Type: application/json`, e inclua o corpo da requisição contendo a string JSON.
+
+### Exemplo:
+
+```javascript
+const dados = {
+  nome: "Alexandre",
+  email: "alexandre@example.com"
+};
+
+fetch('https://api.exemplo.com/enviar-dados', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(dados)
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Erro:', error));
+```
+
+# Envio de Dados com `fetch` no JavaScript
+
+## 2. Enviando Dados como FormData
+
+O `FormData` é uma interface que permite construir facilmente um conjunto de pares chave/valor representando os campos de um formulário e seus respectivos valores. É útil para enviar dados que geralmente seriam enviados por meio de um formulário HTML, como arquivos ou múltiplos campos de texto.
+
+### Passos:
+
+1. **Crie um objeto FormData**: Você pode criar um objeto `FormData` vazio e adicionar os campos manualmente, ou usar um formulário HTML existente.
+2. **Adicione campos ao FormData**: Utilize o método `.append()` para adicionar campos ao objeto `FormData`.
+3. **Configure a requisição fetch**: No `fetch`, defina o método como `POST` (ou outro método HTTP) e inclua o objeto `FormData` no corpo da requisição.
+
+### Exemplo:
+
+```javascript
+const formData = new FormData();
+formData.append('nome', 'Alexandre');
+formData.append('email', 'alexandre@example.com');
+formData.append('arquivo', arquivoInput.files[0]); // Supondo que 'arquivoInput' seja um campo de upload de arquivo
+
+fetch('https://api.exemplo.com/enviar-dados', {
+  method: 'POST',
+  body: formData
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Erro:', error));
+```
+
+## Diferenças entre JSON e FormData
+
+- **JSON** é ideal para enviar dados estruturados e facilmente processados no servidor. É amplamente utilizado para comunicação com APIs RESTful.
+
+- **FormData** é mais flexível para enviar dados mistos, como campos de texto e arquivos, em uma única requisição. Ele também simula como os dados seriam enviados em um formulário HTML padrão, o que é útil em situações onde você precisa enviar arquivos ou dados de múltiplos campos.
+
+Escolher entre `JSON` e `FormData` depende do tipo de dados que você está enviando e dos requisitos do servidor que receberá a requisição.
+
+
+
+# Tratando a resposta do servido
+
 # Status de Resposta HTTP: Entendendo o Código 200 e Outros Principais Códigos
 
 Quando você faz uma requisição a um servidor, ele retorna um código de status HTTP para indicar o resultado da sua solicitação. Esses códigos são essenciais para entender o que aconteceu com a sua requisição. Vamos focar nos códigos mais comuns, começando pelo famoso `200 OK`.
@@ -227,73 +302,4 @@ fetch('https://api.exemplo.com/recurso')
 });
 
 ```
-# Envio de Dados com `fetch` no JavaScript
 
-O envio de dados em uma requisição `fetch` no JavaScript pode ser feito de diferentes maneiras, dependendo do tipo de dados que você precisa enviar. Os dois métodos mais comuns são utilizando JSON e FormData.
-
-## 1. Enviando Dados como JSON
-
-JSON (JavaScript Object Notation) é o formato mais comum para enviar dados estruturados em uma requisição HTTP, especialmente para APIs RESTful.
-
-### Passos:
-
-1. **Crie o objeto JavaScript**: Primeiro, você cria um objeto JavaScript com os dados que deseja enviar.
-2. **Converta para JSON**: Utilize a função `JSON.stringify()` para converter o objeto em uma string JSON.
-3. **Configure a requisição fetch**: Na chamada `fetch`, defina o método como `POST` (ou outro método HTTP como `PUT`, `PATCH`, etc.), adicione os cabeçalhos adequados, como `Content-Type: application/json`, e inclua o corpo da requisição contendo a string JSON.
-
-### Exemplo:
-
-```javascript
-const dados = {
-  nome: "Alexandre",
-  email: "alexandre@example.com"
-};
-
-fetch('https://api.exemplo.com/enviar-dados', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(dados)
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error('Erro:', error));
-```
-
-# Envio de Dados com `fetch` no JavaScript
-
-## 2. Enviando Dados como FormData
-
-O `FormData` é uma interface que permite construir facilmente um conjunto de pares chave/valor representando os campos de um formulário e seus respectivos valores. É útil para enviar dados que geralmente seriam enviados por meio de um formulário HTML, como arquivos ou múltiplos campos de texto.
-
-### Passos:
-
-1. **Crie um objeto FormData**: Você pode criar um objeto `FormData` vazio e adicionar os campos manualmente, ou usar um formulário HTML existente.
-2. **Adicione campos ao FormData**: Utilize o método `.append()` para adicionar campos ao objeto `FormData`.
-3. **Configure a requisição fetch**: No `fetch`, defina o método como `POST` (ou outro método HTTP) e inclua o objeto `FormData` no corpo da requisição.
-
-### Exemplo:
-
-```javascript
-const formData = new FormData();
-formData.append('nome', 'Alexandre');
-formData.append('email', 'alexandre@example.com');
-formData.append('arquivo', arquivoInput.files[0]); // Supondo que 'arquivoInput' seja um campo de upload de arquivo
-
-fetch('https://api.exemplo.com/enviar-dados', {
-  method: 'POST',
-  body: formData
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error('Erro:', error));
-```
-
-## Diferenças entre JSON e FormData
-
-- **JSON** é ideal para enviar dados estruturados e facilmente processados no servidor. É amplamente utilizado para comunicação com APIs RESTful.
-
-- **FormData** é mais flexível para enviar dados mistos, como campos de texto e arquivos, em uma única requisição. Ele também simula como os dados seriam enviados em um formulário HTML padrão, o que é útil em situações onde você precisa enviar arquivos ou dados de múltiplos campos.
-
-Escolher entre `JSON` e `FormData` depende do tipo de dados que você está enviando e dos requisitos do servidor que receberá a requisição.
