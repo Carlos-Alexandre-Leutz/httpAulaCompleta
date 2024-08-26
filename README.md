@@ -304,3 +304,67 @@ fetch('https://api.exemplo.com/recurso')
 
 ```
 
+## `then` e `catch` no JavaScript
+
+No JavaScript, `then` e `catch` são métodos utilizados para lidar com operações assíncronas, especialmente ao trabalhar com Promises. Eles ajudam a processar os resultados de uma promessa, seja em caso de sucesso (`then`) ou em caso de erro (`catch`).
+
+### `then`
+
+O método `then` é usado para manipular o resultado de uma Promise que foi resolvida com sucesso. Quando uma operação assíncrona (como uma requisição HTTP) é concluída sem erros, o código dentro do `then` é executado. Ele recebe como argumento uma função que processa o valor retornado pela Promise.
+
+#### Exemplo de uso:
+
+```javascript
+fetch('https://api.exemplo.com/dados')
+  .then(response => response.json()) // Tenta processar a resposta
+  .then(data => console.log(data))   // Manipula os dados, se bem-sucedido
+  .catch(error => console.error('Erro:', error)); // Manipula o erro, se ocorrer
+```
+## Resumindo:
+
+- **`then`**: Usado para processar o resultado de uma Promise resolvida com sucesso.
+- **`catch`**: Usado para capturar e processar erros de uma Promise rejeitada.
+
+Esses métodos tornam o código assíncrono mais fácil de ler e entender, permitindo que o desenvolvedor trate de forma clara os diferentes resultados de uma operação assíncrona.
+
+## Requisição Assíncrona
+
+Uma requisição assíncrona é uma operação que permite que um programa envie uma solicitação para um servidor e continue executando outras tarefas enquanto aguarda a resposta. 
+
+Em vez de bloquear o fluxo de execução do código até que a resposta seja recebida, a requisição assíncrona permite que o programa realize outras ações, melhorando a eficiência e a capacidade de resposta da aplicação.
+
+Esse modelo é frequentemente implementado usando Promises e métodos como `fetch`, `then`, e `catch` no JavaScript, possibilitando que o desenvolvedor lide com operações de rede de forma não bloqueante e que reaja rapidamente aos resultados da requisição, seja com sucesso ou com erro.
+
+
+# Axios
+
+O `Axios` é uma biblioteca JavaScript usada para fazer requisições HTTP de maneira simples e eficiente. Ele é baseado em Promises, o que facilita o tratamento assíncrono das respostas das requisições. O `Axios` é muito popular em projetos front-end, especialmente em aplicações React, Angular e Vue.js, devido à sua facilidade de uso e flexibilidade.
+
+## Principais Características do `Axios`:
+
+- **Suporte a Promises**: Facilita o trabalho com operações assíncronas.
+- **Interceptors**: Permite interceptar e modificar requisições ou respostas antes que elas sejam manipuladas, útil para autenticação e tratamento de erros.
+- **Suporte a JSON**: Configurações padrão que permitem enviar e receber JSON de maneira simples.
+- **Configuração de Cabeçalhos**: Permite definir cabeçalhos HTTP personalizados facilmente.
+- **Suporte a Cancelamento de Requisições**: Útil para cancelar requisições em andamento, por exemplo, em casos de navegação entre páginas.
+- **Suporte a Requisições tanto no Navegador quanto no Node.js**: Isso faz do `Axios` uma escolha versátil para projetos full-stack.
+
+## Exemplo Básico de Uso:
+
+```javascript
+import axios from 'axios';
+
+axios.post('https://api.exemplo.com/dados')
+
+axios.put('https://api.exemplo.com/dados')
+
+axios.delet('https://api.exemplo.com/dados')
+
+axios.get('https://api.exemplo.com/dados')
+
+  .then(response => console.log(response.data))
+  .catch(error => console.error('Erro:', error));
+
+
+```
+
