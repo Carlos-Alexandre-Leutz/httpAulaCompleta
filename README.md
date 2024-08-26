@@ -114,7 +114,8 @@ fetch('https://api.exemplo.com/enviar-dados', {
 .catch(error => console.error('Erro:', error));
 ```
 
-# Envio de Dados com `fetch` no JavaScript
+# 
+# Formas de Envio de Dados com `fetch` no JavaScript
 
 ## 2. Enviando Dados como FormData
 
