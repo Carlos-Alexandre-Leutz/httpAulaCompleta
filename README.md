@@ -3,6 +3,9 @@ Esse conteúdo foi criado no canal Alexandre Leutz.
 Assista ao vídeo com a explicação em:
 https://youtu.be/cJ2_WPJ6Cqw
 
+Veja o site usado na aula 
+https://carlos-alexandre-leutz.github.io/httpAulaCompleta/
+
 
 # CRUD com Firebase Realtime Database
 
